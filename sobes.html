@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sobes</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+		.reg{font-weight: 400;}
+		.ireg{font-weight: 400; font-style: italic;}
+		.sbold{font-weight: 600;}
+		.isbold{font-weight: 600; font-style: italic;}
+		.bold{font-weight: 700;}
+		.container{
+		    width: 1170px;
+		    margin: 0 auto;
+		}
+		@media (max-width: 1200px){.container{max-width: 970px;}}
+		@media (max-width: 992px){.container{max-width: 750px;}}
+		@media (max-width: 767px){.container{max-width: 90%;}}
+		h3{
+			margin-block-end: 0em;
+			padding-top: 3em;
+		}
+		p{
+			margin-block-start: 0.25em;
+			margin-block-end: 0em;
+			padding-left: 15px;
+		}
+		body{
+		    font-family: 'Montserrat';
+		}
+		img{
+			width: 100%;
+			max-width: 400px;
+		}
+		a:visited{
+			color: blue;
+		}
+		a{
+			text-decoration: none;
+			transition: 0.5s;
+			color: blue;
+		}
+		a:hover{
+			transition: 0.2s;
+			text-decoration: black solid underline;
+		}
+		.a_selected{
+		    animation: a_selected_anim 3s;
+		}
+		@keyframes a_selected_anim{
+		    0% { background: transparent;}	
+		    30% { background: yellow;}
+		    100% { background: transparent;}
+		} 
+	</style>	
+</head>
+<body>
+	<div class="container">
+		<div id="cicd">
+			<h3>
+				CI/CD - Continuous Integration / Continuous Delivery
+			</h3>
+			<p>
+				Это практики которые позволяют разработчикам чаще и надёжнее развёртывать  изменения ПО. СI/CD - одна из DevOps практик и также относится к <a href="#agile">Agile</a> - практике. <br><br>
+				Непрерывная интеграция (CI) - методология разработки при которой в код вносятся небольшие изменения с частыми коммитами.  И поскольку большинство современных приложений разрабатываются с использованием различных платформ и инструментов, то появляется необходимость в механизме интеграции и тестировании вносимых изменений. <br><br>
+				Цель CI - обеспечить автоматизированный и последовательный способ сборки, упаковки и тестирования приложений <br>
+				Цель CD - автоматизировать развёртывание приложений в различные окружения. <br>
+
+				9586
+				<a href="https://habr.com/ru/company/otus/blog/515078/">подробнее</a> 
+
+			</p>
+		</div>
+		<!-- -------------- -->
+		<div id="db">
+			<h3>
+				БД - База Данных
+			</h3>
+			<p>
+				9586
+			</p>
+		</div>
+		<!-- -------------- -->
+		<div id="transaction">
+			<h3>
+				Транзакция
+			</h3>
+			<p>
+				Последовательность команд SQL, которые должны быть выполнены полностью или не выполнены вообще.
+			</p>
+		</div>
+		<!-- -------------- -->
+		<h3>
+			Как создать <a href="#transaction">транзакцию</a> 
+		</h3>
+		<p>
+			<code>START TRANSACTION; <br><br>
+			SELECT ...; <br>
+			UPDATE ...; <br>
+			INSERT ...; <br>
+			ДРУГИЕ ЗАПРОСЫ ...;<br><br>
+			COMMIT; // для записи в базу данных всех запросов<br>
+			или <br>
+			ROLLBACK; // для отмены всех изменений которые выполнила транзакция
+			</code>
+		</p>
+		<!-- -------------- -->
+		<h3>
+			Завершение <a href="#transaction">транзакций</a> 
+		</h3>
+		<p>
+			- Команды <code>COMMIT</code> или <code>ROLLBACK</code> <br>
+			- <code>ALTER_TABLE</code> или <code>CREATE_TABLE</code> фиксируют все транзакции <br>
+			- Сбой СУБД откатывает все транзакции<br>
+			- Сбой клиента СУБД откатывает все транзакции после тайм-аута
+		</p>
+		<!-- -------------- -->
+		<h3>
+			Автоматическая фиксация <a href="#transaction">транзакций</a> 
+		</h3>
+		<p>
+			Режим в котором после выполнения каждой команды SQL автоматически фиксируется транзакция<br>
+			По умолчанию этот режим включён в PostgreSQL
+		</p>
+		<!-- -------------- -->
+		<div id="db_index">
+			<h3>
+				Индексы в <a href="#db">БД</a> 
+			</h3>
+			<p>
+				Это метод структуры данных, который позволяет вам быстро извлекать записи из файла базы данных. Индекс – это небольшая таблица, имеющая всего два столбца. Первый столбец содержит копию первичного или потенциального ключа таблицы. Его второй столбец содержит набор указателей для хранения адреса дискового блока, где хранится это конкретное значение ключа. <br><br>
+				Индексацию ускоряет процесс работы для фильтрации по столбцу, для объеденения столбцов и для сортировки данных по столбцу (если для этих столбцов существует индекс) <br><br>
+				Почему повсеместно не использовать индексы? - Изменение данных в индексированном столбце влечёт за собой обновление самого столбца, что при большой нагрузке на базу, существенно уменьшит производительность. <br><br>
+				Индексация базы данных определяется на основе ее атрибутов индексации. Два основных типа методов индексации:<br><br>
+
+				<a href="#bd_primary_index">Первичная индексация</a><br>
+				<a href="#bd_secondary_index">Вторичная индексация</a>
+			</p>
+		</div>
+		<!-- -------------- -->
+		<div id="db_create_index">
+			<h3>
+				Как создать <a href="#db_index">индекс</a> в <a href="#db">БД</a> 
+			</h3>
+			<p>
+				Создание
+				<code>CREATE INDEX имя-таблицы_имя-стобца_idx ON имя-таблицы(имя-столбца)</code>
+				Создание
+				<code>DROP INDEX имя-таблицы_имя-стобца_idx ON имя-таблицы(имя-столбца)</code>
+			</p>
+		</div>
+		<!-- -------------- -->
+		<div id="bd_primary_index">
+			<h3>
+				Первичная <a href="#db_index">индекс</a> в <a href="#db">БД</a> 
+			</h3>
+			<p>
+				Это упорядоченный файл с фиксированной длиной и двумя полями. Первое поле – это тот же первичный ключ, а второе поле указывает на этот конкретный блок данных. В первичном индексе всегда существует отношение один к одному между записями в таблице индекса. <br><br>
+				Первичная индексация также делится на два типа. <br><br>
+				<a href="#db_dense_index">Плотный индекс</a> <br>
+				<a href="#db_sparse_index">Разреженный индекс</a>
+			</p>
+		</div>
+		<!-- -------------- -->
+		<div id="db_dense_index">
+			<h3>
+				Плотный <a href="#db_index">индекс</a> в <a href="#db">БД</a> 
+			</h3>
+			<p>
+				В плотном <a href="#db_index">индексe</a> запись создается для каждого поискового ключа. Это помогает выполнять поиск быстрее в сравнении с <a href="#db_sparse_index">разреженным индексированием</a>, но требует больше места для хранения записей индекса. В этом индексировании записи метода содержат значение ключа поиска и указывают на реальную запись на диске. <br><br>
+				<img src="img/db_dense_index.png" alt="">
+			</p>
+		</div>
+		<!-- -------------- -->
+		<div id="db_sparse_index">
+			<h3>
+				Разреженный <a href="#db_index">индекс</a> в <a href="#db">БД</a> 
+			</h3>
+			<p>
+				В разрежённом <a href="#db_index">индексe</a> запись создается только для некоторых поисковых ключей. Разреженный индекс поможет вам решить проблемы <a href="#db_dense_index">плотного индексирования</a>. Ему требуется меньше места, меньше затрат на обслуживание для вставки и удаления, но он медленнее по сравнению с <a href="#db_dense_index">плотным индексом</a> для поиска записей. <br><br>
+				<img src="img/db_sparse_index.png" alt="">
+			</p>
+		</div>
+		<!-- -------------- -->
+		<div id="bd_secondary_index">
+			<h3>
+				Вторичный <a href="#db_index">индекс</a> в <a href="#db">БД</a> 
+			</h3>
+			<p>
+				В разрежённом <a href="#db_index">индексe</a> запись создается только для некоторых поисковых ключей. Разреженный индекс поможет вам решить проблемы <a href="#db_dense_index">плотного индексирования</a>. Ему требуется меньше места, меньше затрат на обслуживание для вставки и удаления, но он медленнее по сравнению с <a href="#db_dense_index">плотным индексом</a> для поиска записей. <br><br>
+				<img src="img/db_sparse_index.png" alt="">
+			</p>
+		</div>
+		
+		<!-- -------------- -->
+		<h3 id="db_joins">
+			JOINS в <a href="#db">БД</a> 
+		</h3>
+		<p>
+			9586
+		</p>
+		<!-- -------------- -->
+		<h3 id='orm'>
+			ORM - Object Relation Mapping
+		</h3>
+		<p>
+			9586
+		</p>
+		<!-- -------------- -->
+		<h3 id='agile'>
+			Agile
+		</h3>
+		<p>
+			9586
+		</p>
+		<!-- -------------- -->
+	</div>
+	<script>
+		var as = document.getElementsByTagName('a');
+		for (let i = 0; i < as.length; i++) {
+			as[i].onclick = function(){
+				var str = this.href;
+				str = str.slice(str.indexOf('#') - str.length+1);
+				document.getElementById(str).classList.add('a_selected');
+				setTimeout(remove_a_selected,3200,str);
+			};
+		}
+		function remove_a_selected(id) {
+			document.getElementById(id).classList.remove('a_selected');
+		}
+	</script>
+</body>
+</html>
+
